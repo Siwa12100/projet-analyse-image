@@ -1,6 +1,7 @@
 import cv2
 import imutils
 import numpy as np
+import pytesseract
 
 
 # Ouvre l'image
@@ -44,5 +45,23 @@ new_image = cv2.bitwise_and(img,img,mask=mask)
 (topx, topy) = (np.min(x), np.min(y))
 (bottomx, bottomy) = (np.max(x), np.max(y))
 Cropped = gray[topx:bottomx+1, topy:bottomy+1]
+
+def extract_text_from_image(image: "cv2.Mat", lang: str = 'fra') -> str:
+    # Vérifie si l'image est en couleur avant de la convertir
+    if len(image.shape) == 3:  # Image en couleur (3 canaux)
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    else:  # Image déjà en niveaux de gris (1 canal)
+        gray = image  
+
+    thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+    
+    extracted_text = pytesseract.image_to_string(thresh, lang=lang)
+    
+    return extracted_text.strip()
+
+
+
+contenu = extract_text_from_image(Cropped)
+print("Contenu Plaque : ", contenu)
 
 cv2.imwrite('results/cropped.jpg', Cropped)
