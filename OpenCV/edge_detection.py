@@ -2,6 +2,7 @@ import cv2
 import imutils
 import numpy as np
 
+
 # Ouvre l'image
 img = cv2.imread('dataset/car.jpg')
 
@@ -43,6 +44,5 @@ new_image = cv2.bitwise_and(img,img,mask=mask)
 (topx, topy) = (np.min(x), np.min(y))
 (bottomx, bottomy) = (np.max(x), np.max(y))
 Cropped = gray[topx:bottomx+1, topy:bottomy+1]
-
 
 cv2.imwrite('results/cropped.jpg', Cropped)
