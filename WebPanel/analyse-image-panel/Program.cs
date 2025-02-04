@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<HttpClient>();
+builder.Services.AddScoped<analyse_image_panel.Services.IService, analyse_image_panel.Services.Service>();
+builder.Services.AddMudServices();
 
 var app = builder.Build();
 
