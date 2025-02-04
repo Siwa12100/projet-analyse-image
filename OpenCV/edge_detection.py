@@ -3,17 +3,20 @@ import imutils
 import numpy as np
 
 # Ouvre l'image
-img = cv2.imread('car.jpg')
+img = cv2.imread('dataset/car.jpg')
 
-# Resize de l'image
-img = cv2.resize(img, (620,480) )
 # Modification de l'image en ajoutant un filtre noir et blanc sur l'image
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 # Ajout d'un filtre qui floute le background pour laisser la voiture en net
 gray = cv2.bilateralFilter(gray, 13, 15, 15)
 
+cv2.imwrite('results/gray.jpg', gray)
+
+
 # Mise en évidence des contours de l'image
 edged = cv2.Canny(gray, 30, 200)
+
+cv2.imwrite('results/edged.jpg', edged)
 
 
 
@@ -42,4 +45,4 @@ new_image = cv2.bitwise_and(img,img,mask=mask)
 Cropped = gray[topx:bottomx+1, topy:bottomy+1]
 
 
-cv2.imwrite('test.jpg', edged)
+cv2.imwrite('results/cropped.jpg', Cropped)
