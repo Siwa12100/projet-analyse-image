@@ -16,9 +16,49 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-# Route pour télécharger une image et obtenir les résultats
 @app.route('/detect', methods=['POST'])
-def upload_image():
+def detect_image():
+    """
+    Route Flask pour l'upload et le traitement d'une image afin d'extraire le texte d'une plaque d'immatriculation.
+
+    Méthode:
+    --------
+    POST
+
+    Paramètres:
+    -----------
+    - file : fichier image (JPEG, PNG, etc.), envoyé via un formulaire multipart.
+
+    Retour:
+    -------
+    - 200 OK : Si l'image est traitée avec succès.
+      ```json
+      {
+          "message": "Image processed successfully",
+          "license_plate": "ABC123"
+      }
+      ```
+    - 400 Bad Request : En cas d'erreur (fichier manquant, mauvais format, etc.).
+      ```json
+      {
+          "error": "No file part"
+      }
+      ```
+    
+    Description:
+    ------------
+    1. Vérifie si un fichier est présent dans la requête.
+    2. Vérifie si le fichier a un nom valide.
+    3. Vérifie si l'extension du fichier est autorisée (via `allowed_file`).
+    4. Sauvegarde le fichier dans le dossier défini par `UPLOAD_FOLDER`.
+    5. Passe le fichier à la fonction `process_image` pour détecter la plaque et extraire son texte.
+    6. Retourne le texte extrait sous forme de réponse JSON.
+    
+    Exceptions:
+    -----------
+    - Retourne une erreur 400 si aucun fichier n'est fourni, si le fichier est vide, ou si son format est invalide.
+    """
+
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
     
@@ -42,15 +82,6 @@ def upload_image():
         })
     else:
         return jsonify({'error': 'Invalid file format'}), 400
-
-# Route pour télécharger une image traitée
-@app.route('/download/<filename>', methods=['GET'])
-def download_file(filename):
-    file_path = os.path.join(RESULTS_FOLDER, filename)
-    if os.path.exists(file_path):
-        return send_file(file_path)
-    else:
-        return jsonify({'error': 'File not found'}), 404
 
 if __name__ == '__main__':
     if not os.path.exists(UPLOAD_FOLDER):

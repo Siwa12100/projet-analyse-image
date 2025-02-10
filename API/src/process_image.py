@@ -6,7 +6,41 @@ from constants.parameters import *
 import os
 
 
-def process_image(image_path):
+def process_image(image_path: str) -> str:
+    """
+    Traite une image pour détecter une plaque d'immatriculation et en extraire le texte.
+
+    Paramètres:
+    -----------
+    image_path : str
+        Le chemin vers l'image à traiter.
+
+    Retour:
+    -------
+    str
+        Le texte extrait de la plaque d'immatriculation détectée, ou une chaîne vide si aucune plaque n'a été trouvée.
+
+    Description:
+    ------------
+    1. Charge et redimensionne l'image à une largeur de 800 pixels en conservant le ratio hauteur/largeur.
+    2. Convertit l'image en niveaux de gris et applique un filtre bilatéral pour réduire le bruit tout en conservant les bords.
+    3. Détecte les contours avec l'algorithme Canny.
+    4. Filtre et trie les contours pour identifier une plaque d'immatriculation en se basant sur la taille et le ratio largeur/hauteur.
+    5. Si aucun contour satisfaisant n'est trouvé, applique des transformations morphologiques (dilatation et érosion) et répète la recherche.
+    6. Si une plaque est détectée, la découpe et la sauvegarde.
+    7. Utilise Tesseract OCR pour extraire le texte de la plaque détectée.
+
+    Notes:
+    ------
+    - Plusieurs images intermédiaires sont sauvegardées dans `RESULTS_FOLDER` pour le débogage.
+    - L'extraction du texte est réalisée avec la configuration `--psm 7`, qui est optimisée pour une seule ligne de texte.
+    - La détection repose sur des critères spécifiques aux plaques européennes (ratio largeur/hauteur entre 2.0 et 6.0).
+
+    Exceptions:
+    -----------
+    - Si aucun texte n'est extrait, la fonction retourne une chaîne vide.
+    """
+
     # Ouvre l'image
     img = cv2.imread(image_path)
 
