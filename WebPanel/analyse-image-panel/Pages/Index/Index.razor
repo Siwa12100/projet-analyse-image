@@ -1,13 +1,15 @@
 ﻿@page "/"
 @using Microsoft.AspNetCore.Components.Forms
 
+<projet_analyse_image.Composants.NavBar.NavBar />
+
 <MudContainer MaxWidth="MaxWidth.Large" Class="pa-4">
     <MudCard Class="pa-4">
         <MudCardContent>
             <MudStack Spacing="2">
-                <MudText Typo="Typo.h3" Class="text-center">Détection de Genre via IA</MudText>
+                <MudText Typo="Typo.h3" Class="text-center">Détection de plaques d'immatriculation</MudText>
                 <MudText Typo="Typo.body1" Class="text-center">
-                    Cette application permet de soumettre une photo et d'obtenir une prédiction du genre de la personne présente sur l'image.
+                    Cette application permet de soumettre une photo et d'obtenir le contenu de la plaque d'immatriculation présente sur l'image.
                 </MudText>
 
                 <MudFileUpload T="IBrowserFile"
@@ -77,5 +79,7 @@
         </MudCardContent>
     </MudCard>
 </MudContainer>
+
+<projet_analyse_image.Composants.Footer.Footer />
 
 <MudSnackbarProvider />
