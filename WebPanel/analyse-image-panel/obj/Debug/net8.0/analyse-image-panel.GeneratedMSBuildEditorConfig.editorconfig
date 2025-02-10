@@ -1,0 +1,52 @@
+is_global = true
+build_property.MudDebugAnalyzer = 
+build_property.MudAllowedAttributePattern = 
+build_property.MudAllowedAttributeList = 
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = analyse_image_panel
+build_property.RootNamespace = analyse_image_panel
+build_property.ProjectDir = /home/siwa/dev/iut/projet-analyse-image/WebPanel/analyse-image-panel/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /home/siwa/dev/iut/projet-analyse-image/WebPanel/analyse-image-panel
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[/home/siwa/dev/iut/projet-analyse-image/WebPanel/analyse-image-panel/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/siwa/dev/iut/projet-analyse-image/WebPanel/analyse-image-panel/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/siwa/dev/iut/projet-analyse-image/WebPanel/analyse-image-panel/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/siwa/dev/iut/projet-analyse-image/WebPanel/analyse-image-panel/Composants/Footer/Footer.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9zYW50cy9Gb290ZXIvRm9vdGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-f4iwt46gwl
+
+[/home/siwa/dev/iut/projet-analyse-image/WebPanel/analyse-image-panel/Composants/NavBar/NavBar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9zYW50cy9OYXZCYXIvTmF2QmFyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-7pxnquss9h
+
+[/home/siwa/dev/iut/projet-analyse-image/WebPanel/analyse-image-panel/Pages/Index/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgvSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-qozjiug68y
+
+[/home/siwa/dev/iut/projet-analyse-image/WebPanel/analyse-image-panel/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

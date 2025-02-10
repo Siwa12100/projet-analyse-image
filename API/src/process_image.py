@@ -110,7 +110,7 @@ def process_image(image_path):
             Cropped = gray[topx:bottomx+1, topy:bottomy+1]
             cropped_path = os.path.join(RESULTS_FOLDER, 'cropped.jpg')
             cv2.imwrite(cropped_path, Cropped)
-            cropped_text = ""
+            cropped_text = pytesseract.image_to_string(Cropped, config='--psm 7')
         else:
             print("Aucune plaque détectée dans le masque.")
     else:
