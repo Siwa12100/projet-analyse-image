@@ -69,7 +69,7 @@ namespace analyse_image_panel.Pages.Index
                 return;
             }
 
-            this.ContenuPlaque = resultatIa.contenu;
+            this.ContenuPlaque = resultatIa.license_plate;
                 this._chargementEnCours = false;
 
             AfficherMessage($"La plaque détectée est : {this.ContenuPlaque}", Severity.Success);
