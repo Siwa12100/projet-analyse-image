@@ -2,6 +2,7 @@ import cv2
 import imutils
 import numpy as np
 
+
 # Ouvre l'image
 img = cv2.imread('dataset/renault-credit-renault.jpg')
 
