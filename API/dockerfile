@@ -16,6 +16,9 @@ COPY requirements.txt .
 # Installation des dépendances Python
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Installation de PyTesseract
+RUN apt-get install -y tesseract-ocr
+
 # Copier le reste du projet
 COPY . .
 
