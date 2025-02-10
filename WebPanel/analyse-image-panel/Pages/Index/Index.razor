@@ -1,3 +1,81 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.Components.Forms
 
-<h1>Hello, world!</h1>
+<MudContainer MaxWidth="MaxWidth.Large" Class="pa-4">
+    <MudCard Class="pa-4">
+        <MudCardContent>
+            <MudStack Spacing="2">
+                <MudText Typo="Typo.h3" Class="text-center">Détection de Genre via IA</MudText>
+                <MudText Typo="Typo.body1" Class="text-center">
+                    Cette application permet de soumettre une photo et d'obtenir une prédiction du genre de la personne présente sur l'image.
+                </MudText>
+
+                <MudFileUpload T="IBrowserFile"
+                               @ref="@_zoneFichier"
+                               OnFilesChanged="SurChangementFichier"
+                               Hidden="@false"
+                               InputClass="absolute mud-width-full mud-height-full overflow-hidden z-10"
+                               InputStyle="opacity:0"
+                               tabindex="-1"
+                               MaxFiles="1">
+                    <ActivatorContent>
+                        <MudPaper Height="300px"
+                                  Outlined="true"
+                                  Class="@_classeDrag"
+                                  Style="display: flex; justify-content: center; align-items: center;">
+                            <MudIcon Icon="@Icons.Material.Filled.CloudUpload" Size="Size.Large" />
+                            <MudText Typo="Typo.h6">
+                                Déposez une image ici ou cliquez pour en sélectionner une
+                            </MudText>
+                        </MudPaper>
+                    </ActivatorContent>
+                </MudFileUpload>
+
+                @if (_nomFichier != null)
+                {
+                    <MudPaper Outlined="true" Class="pa-4 text-center">
+                        <MudText Typo="Typo.body1">Fichier sélectionné : @_nomFichier</MudText>
+                        <MudImage 
+                            Src="@_imageUrl" 
+                            Alt="Image sélectionnée" 
+                            Width="300" 
+                            Height="300" 
+                            Fluid="true" 
+                            ObjectFit="ObjectFit.Contain" 
+                            Elevation="10" 
+                            Class="rounded-lg mx-auto" />
+                    </MudPaper>
+                }
+
+                <MudToolBar Gutters="false" Class="d-flex justify-center gap-4 mt-4">
+                    <MudButton Color="Color.Primary" Disabled="@(_nomFichier != null)" OnClick="@OuvrirSelectionFichierAsync" Variant="Variant.Filled">
+                        <MudIcon Icon="@Icons.Material.Filled.PhotoLibrary" /> Sélectionner une image
+                    </MudButton>
+                    <MudButton Color="Color.Primary" Disabled="@(_nomFichier == null)" OnClick="@EnvoyerAppelApi" Variant="Variant.Filled">
+                        @if (this._chargementEnCours)
+                        {
+                            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true"/>
+                        }
+                        else
+                        {
+                            <MudIcon Icon="@Icons.Material.Filled.Send" />
+                        }
+                          Lire plaque
+                    </MudButton>
+                    <MudButton Color="Color.Error" Disabled="@(_nomFichier == null)" OnClick="@ViderAsync" Variant="Variant.Filled">
+                        <MudIcon Icon="@Icons.Material.Filled.Clear" /> Vider
+                    </MudButton>
+                </MudToolBar>
+
+                @if (this.ContenuPlaque != null)
+                {
+                    <MudAlert Severity="MudBlazor.Severity.Success" Class="mt-4">
+                        Contenu de la plaque : <b>@this.ContenuPlaque</b>
+                    </MudAlert>
+                }
+            </MudStack>
+        </MudCardContent>
+    </MudCard>
+</MudContainer>
+
+<MudSnackbarProvider />
