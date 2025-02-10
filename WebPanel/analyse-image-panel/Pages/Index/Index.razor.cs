@@ -19,7 +19,7 @@ namespace analyse_image_panel.Pages.Index
         private IBrowserFile? _fichierSelectionne;
         private MudFileUpload<IBrowserFile>? _zoneFichier;
         public  string? _imageUrl { get; set; }
-        private static readonly string[] ExtensionsAutorisees = { ".jpg", ".jpeg", ".png", ".gif", ".bmp" };
+        private static readonly string[] ExtensionsAutorisees = { ".jpg", ".jpeg", ".png", ".gif", ".bmp", "webp" };
         protected bool _chargementEnCours { get; set; }
         protected string? ContenuPlaque { get; set; }
 
