@@ -1,0 +1,26 @@
+# Utilisation d'une image Python légère
+FROM python:3.10-slim
+
+# Installation des dépendances système (pour OpenCV notamment)
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Définition du répertoire de travail
+WORKDIR /app
+
+# Copier uniquement requirements.txt pour optimiser le cache Docker
+COPY requirements.txt .
+
+# Installation des dépendances Python
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copier le reste du projet
+COPY . .
+
+# Exposition du port Flask
+EXPOSE 5000
+
+# Commande pour lancer l'API Flask
+CMD ["python", "app.py"]
